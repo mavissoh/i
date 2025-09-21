@@ -27,6 +27,7 @@ body {
 
 .sidebar-link {
     transition: all .4s;
+    text-align: center;
 }
 
 .sidebar-link:hover {
@@ -126,7 +127,9 @@ tr {
   
 .top-navbar {
     position: static;
-    background: linear-gradient(rgba(167, 165, 202, 0.548), rgba(53, 27, 87, 0.377)), url(../img/img1.jpeg);
+    background: url(../img/img1.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
 }
 
 /* end of navbar */
