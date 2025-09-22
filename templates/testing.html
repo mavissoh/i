@@ -1,86 +1,212 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"
-    integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
-    crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css')}}">
-  
-  <title>homepage</title>
-  <!--bootstrap-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>SG Library</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 200px;
+      background: #f5f5f5;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+    }
+    .sidebar h2 {
+      font-size: 18px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      margin: 10px 0;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      padding: 20px;
+      background: #fafafa;
+    }
+    .header {
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .header-row .filters {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-row select, 
+    .header-row button {
+      padding: 5px 10px;
+    }
+
+    /* Book cards */
+    .book-card {
+      display: flex;
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      align-items: flex-start;
+    }
+    .book-card img {
+      width: 120px;
+      height: auto;
+      margin-right: 20px;
+      border-radius: 4px;
+    }
+    .book-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .book-info h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .book-info p {
+      margin: 5px 0;
+      color: #555;
+    }
+    .book-info .details {
+      margin-top: 10px;
+    }
+    .book-actions {
+      display: flex;
+      align-items: flex-end;
+      margin-left: auto;
+    }
+    .book-actions button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .book-actions button:hover {
+      background: #218838;
+    }
+  </style>
 </head>
-
 <body>
-  <!-- navbar -->
-  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-    <!-- toggler: only needed on small screens, so show only below md -->
-    <button
-      class="navbar-toggler ms-auto mb-2 d-md-none bg-light"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#myNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <!-- top bar -->
-      <div class="d-md-none w-100 bg-light p-3 top-navbar">
-        <a href="#" class="navbar-brand d-block text-white mb-3 text-center bottom-border">SG Library</a>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="/books" class="nav-link text-white p-2"><i class="fas fa-address-card fa-lg me-2"></i> Book Titles</a>
-          </li>
-          <!-- add links here -->
-        </ul>
-      </div>
-      <!-- top bar -->
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>SG Library</h2>
+    <ul>
+      <li><a href="#">Book Titles</a></li>
+    </ul>
+  </div>
 
-      <!-- sidebar -->
-      <div class="container-fluid">
-        <div class="row">
-          
-          <!-- sidebar-->
-          <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top d-none d-md-block">
-            <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">SG Library</a>
-
-            <ul class="navbar-nav flex-column mt-4">
-              <li class="nav-item"><a href="/books" class="nav-link text-white p-3 mb-2 sidebar-link"><i
-                    class="fas fa-address-card text-light fa-lg me-3"></i> Book Titles</a></li>
-            <!-- add links here -->
-            </ul>
-          </div>
-          <!-- end of sidebar -->
-
+  <!-- Main content -->
+  <div class="main">
+    <div class="header">
+      <h1>BOOK TITLES</h1>
+      <div class="header-row">
+        <p id="title-count"></p>
+        <div class="filters">
+          <label>Category</label>
+          <select>
+            <option>All</option>
+          </select>
+          <button>Search</button>
         </div>
       </div>
     </div>
-  </nav>
-  <!-- end of navbar -->
 
-   <!-- cards -->
-  <section>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xl-10 col-lg-9 col-md-8 ms-auto">
-          <div class="row pt-md-5 ms-md-3 mt-md-3 mb-5">
-            {% block mainblock %}
-            {% endblock %}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <div id="book-list"></div>
+  </div>
 
-  <!-- end of cards -->
+  <script>
+    // sample data
+    const all_books = [
+      {
+        'genres': ["Fantasy","Dark Academia", "Fiction", "Romance"],
+        'title': "Katabasis",
+        'category': "Adult",
+        'url': "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1738769146i/210223811.jpg",
+        'description': [
+          "Two graduate students must set aside their rivalry and journey to Hell...",
+          "Alice Law has only ever had one goal: to become one of the brightest minds...",
+          "Grimes is now in Hell, and she's going in after him..."
+        ],
+        'authors': ["R.F. Kuang"],
+        'pages': 400,
+        'available': 2,
+        'copies': 2
+      },
+      {
+        'genres': ["Fantasy", "Romance", "Fiction", "Magic"],
+        'title': "Accomplice to the Villain",
+        'category': 'Adult',
+        'url': "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1733486325i/220892644.jpg",
+        'description': [
+          "Once Upon a Time meets The Office in Hannah Nicole Maehrer's laugh-out-loud viral TikTok series...",
+          "REWARD OFFERED: Apprentice to The Villain wanted for treason (light)...",
+          "Evie Sage didn't mean to become the right-hand woman to the kingdom's most terrifying villain..."
+        ],
+        'authors': ["Hannah Nicole Maehrer"],
+        'pages': 482,
+        'available': 0,
+        'copies': 2
+      }
+    ];
 
-  <!--bootstrap-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    // render books
+    const bookList = document.getElementById("book-list");
+    const titleCount = document.getElementById("title-count");
+    titleCount.textContent = `Number of titles: ${all_books.length}`;
+
+    all_books.forEach(book => {
+      const card = document.createElement("div");
+      card.className = "book-card";
+
+      const img = document.createElement("img");
+      img.src = book.url;
+      img.alt = book.title;
+      card.appendChild(img);
+
+      const info = document.createElement("div");
+      info.className = "book-info";
+      info.innerHTML = `
+        <h2>${book.title}</h2>
+        <p><strong>By ${book.authors.join(", ")}</strong></p>
+        <p><em>Category:</em> ${book.category}, ${book.genres.join(", ")}</p>
+        <p><em>Pages:</em> ${book.pages}</p>
+        <p class="details">${book.description[0]}</p>
+      `;
+
+      card.appendChild(info);
+
+      const actions = document.createElement("div");
+      actions.className = "book-actions";
+      const btn = document.createElement("button");
+      btn.textContent = "More details";
+      actions.appendChild(btn);
+      card.appendChild(actions);
+
+      bookList.appendChild(card);
+    });
+  </script>
+
 </body>
-
 </html>

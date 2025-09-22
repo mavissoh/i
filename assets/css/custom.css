@@ -6,11 +6,11 @@ body {
 }
 
 .img-fluid {
-    max-width: 70%;
+    width: 120px;
     height: auto;
+    margin-right: 20px;
+    border-radius: 4px;
 }
-
-
 
 /* navbar */
 .sidebar {
@@ -116,14 +116,6 @@ th {
 tr {
     border-bottom: 2px solid rgba(221, 221, 221, 0.465);
   }
-
- /* table tr td {
-    border-right: 2px solid rgba(221, 221, 221, 0.465);
-  }
-  
-  table tr td:last-of-type {
-    border: none;
-  } */
   
 .top-navbar {
     position: static;
@@ -136,8 +128,16 @@ tr {
 
 /* cards */
 .card-common {
-    box-shadow: 1px 2px 5px #999;
+    box-shadow: 1px 2px 5px #767676;
     transition: all .4s;
+    display: flex;
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    align-items: flex-start;
+    margin-left: 25px;
+    width:95%;
 }
 
 .card-common:hover {
@@ -145,4 +145,24 @@ tr {
     transform: translateY(-1px);
 }
 
+.card-img {
+    padding: 20px;
+}
+
 /* end of cards */
+
+.header{
+    background-color: rgb(161, 189, 161);
+    margin-left: 5px;
+    padding: 8px;
+    align-items: flex-start;
+    width: 99%;
+    margin-bottom: 0;
+}
+
+.header-title{
+    background-color: rgb(204, 223, 204);
+    padding: 5px;
+    margin-left: 25px;
+    width:95%;
+}
