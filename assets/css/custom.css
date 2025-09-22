@@ -136,8 +136,7 @@ tr {
     margin-bottom: 15px;
     border-radius: 8px;
     align-items: flex-start;
-    margin-left: 25px;
-    width:95%;
+    width:100%;
 }
 
 .card-common:hover {
@@ -153,16 +152,12 @@ tr {
 
 .header{
     background-color: rgb(161, 189, 161);
-    margin-left: 5px;
     padding: 8px;
     align-items: flex-start;
-    width: 99%;
     margin-bottom: 0;
 }
 
 .header-title{
     background-color: rgb(204, 223, 204);
     padding: 5px;
-    margin-left: 25px;
-    width:95%;
 }

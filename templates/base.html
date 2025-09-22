@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  
+  <!--bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"
     integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
     crossorigin="anonymous"></script>
@@ -12,8 +13,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css')}}">
   
   <title>{{panel}}</title>
-  <!--bootstrap-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
 </head>
 
 <body>
@@ -46,7 +46,7 @@
             </ul>
           </div>
           <!-- end of top-nav -->
-          <div class="col-md-10 offset-md-2">
+          <div class="col-md-8 col-lg-10 offset-lg-2 offset-md-4">
             <h4 class="header text-uppercase">{{ panel }}</h4>
           </div>
     </div>
@@ -55,15 +55,11 @@
 
    <!-- cards -->
   <section>
-    <div class="container-fluid offset-md-2">
-      <div class="row">
+    <div class="container-fluid offset-md-4 offset-lg-2">
         <div class="col-xl-10 col-lg-9 col-md-8">
-          <!-- <div class="row pt-md-5 ms-md-3 mt-md-3 mb-5"> -->
             {% block mainblock %}
             {% endblock %}
-          <!-- </div> -->
         </div>
-      </div>
     </div>
   </section>
 
