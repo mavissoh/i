@@ -21,8 +21,8 @@ def home():
 
 @app.route('/books/<title>')
 def bookDetails(title):
-    book_title = Book.getBook(title)
-    return render_template('bookDetails.html', bookTitle=book_title, panel='Book Details')
+    book = Book.getBook(title)
+    return render_template('bookDetails.html', book=book, panel='Book Details')
 
 @app.route('/test')
 def testing():
