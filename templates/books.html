@@ -6,16 +6,16 @@
 
     <div class="d-flex col-12 justify-content-between header-title align-items-center">
     <p class="mb-0">Number of titles: {{ books|length }}</p>
-    <div class="d-flex">
+    <form method="get" action="{{ url_for('home') }}" class="d-flex">
         <label class="me-2 mb-0 mt-2 align-items-center">Category</label>
-        <select class="form-select form-select-sm me-2">
-        <option>All</option>
-        <option>Children</option>
-        <option>Teens</option>
-        <option>Adults</option>
+        <select name="category" class="form-select form-select-sm me-2">
+            <option value="All" {% if selected_category == "All" %}selected{% endif %}>All</option>
+            <option value="Children" {% if selected_category == "Children" %}selected{% endif %}>Children</option>
+            <option value="Teens" {% if selected_category == "Teens" %}selected{% endif %}>Teens</option>
+            <option value="Adult" {% if selected_category == "Adult" %}selected{% endif %}>Adult</option>
         </select>
-        <button class="btn btn-success">Search</button>
-    </div>
+        <button type="submit" class="btn btn-success">Search</button>
+    </form>
     </div>
 
   {% for book in books %}

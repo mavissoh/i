@@ -8,8 +8,16 @@ app.static_folder = 'assets'
 @app.route('/')
 @app.route('/books')
 def home():
-    all_books = Book.getAllBooks()
-    return render_template('books.html', panel="Book Titles", books=all_books)
+    category = request.args.get("category", "All")
+
+    allBooks = Book.getAllBooks()
+    
+    if category == "All":
+        filtered_books = allBooks
+    else:
+        filtered_books = [book for book in allBooks if book['category'] == category]
+
+    return render_template("books.html", books=filtered_books, selected_category=category, panel = 'Book Titles')
 
 @app.route('/books/<title>')
 def bookDetails(title):
