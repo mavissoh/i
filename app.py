@@ -1,28 +1,26 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, Blueprint, jsonify, url_for
+from flask_mongoengine import MongoEngine, Document
+
+from controllers.booksController import booksBlueprint
+
 from models.booksModel import Book
 
+import pymongo
+import csv
+import io
+import json
+import datetime as dt
+import os
+
 app = Flask(__name__)
-
+app.config['MONGODB_SETTINGS'] = {
+    'db':'ict239tma',
+    'host':'localhost'
+}
 app.static_folder = 'assets'
+db = MongoEngine(app)
 
-@app.route('/')
-@app.route('/books')
-def home():
-    category = request.args.get("category", "All")
-
-    allBooks = Book.getAllBooks()
-    
-    if category == "All":
-        filtered_books = allBooks
-    else:
-        filtered_books = [book for book in allBooks if book['category'] == category]
-
-    return render_template("books.html", books=filtered_books, selected_category=category, panel = 'Book Titles')
-
-@app.route('/books/<title>')
-def bookDetails(title):
-    book = Book.getBook(title)
-    return render_template('bookDetails.html', book=book, panel='Book Details')
+app.register_blueprint(booksBlueprint)
 
 @app.route('/test')
 def testing():

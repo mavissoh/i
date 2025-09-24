@@ -6,7 +6,7 @@
 
     <div class="d-flex col-12 justify-content-between header-title align-items-center">
     <p class="mb-0">Number of titles: {{ books|length }}</p>
-    <form method="get" action="{{ url_for('home') }}" class="d-flex">
+    <form method="get" action="{{ url_for('books.home') }}" class="d-flex">
         <label class="me-2 mb-0 mt-2 align-items-center">Category</label>
         <select name="category" class="form-select form-select-sm me-2">
             <option value="All" {% if selected_category == "All" %}selected{% endif %}>All</option>
