@@ -18,14 +18,14 @@
 
 <body>
   <!-- navbar -->
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <button class="navbar-toggler ms-auto mb-2 d-md-none bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler ms-auto me-2 d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="myNavbar">
           
           <!-- sidebar -->
-          <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top d-none d-md-block">
+          <div class="col-xl-2 col-lg-3 sidebar fixed-top d-none d-lg-block">
             <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">SG Library</a>
             <ul class="navbar-nav flex-column mt-4">
               <li class="nav-item"><a href="/books" class="nav-link text-white p-3 mb-2 sidebar-link"><i
@@ -35,7 +35,7 @@
           <!-- end of sidebar -->
 
           <!-- top-nav -->
-          <div class="d-md-none w-100 bg-light p-3 top-navbar">
+          <div class="d-lg-none w-100 bg-light p-3 top-navbar">
             <a href="#" class="navbar-brand d-block text-white mb-3 text-center bottom-border">SG Library</a>
             
             <ul class="navbar-nav">
@@ -46,7 +46,7 @@
             </ul>
           </div>
           <!-- end of top-nav -->
-          <div class="col-md-8 col-lg-10 offset-lg-2 offset-md-4">
+          <div class="col-md-12 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2">
             <h4 class="header text-uppercase">{{ panel }}</h4>
           </div>
     </div>
@@ -55,13 +55,16 @@
 
    <!-- cards -->
   <section>
-    <div class="container-fluid offset-md-4 offset-lg-2">
-        <div class="col-xl-10 col-lg-9 col-md-8">
-            {% block mainblock %}
-            {% endblock %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 col-lg-9 offset-lg-3 col-xl-10 offset-xl-2">
+          {% block mainblock %}
+          {% endblock %}
         </div>
+      </div>
     </div>
   </section>
+
 
   <!-- end of cards -->
 
