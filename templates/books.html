@@ -22,19 +22,19 @@
   <div class="mb-2">
     <div class="card-common h-100 row g-0 align-items-start">
       <div class="bg-image hover-overlay ripple col-xs-12 col-lg-2 col-md-4" data-mdb-ripple-color="light">
-        <img src="{{book['url']}}" class="card-img" />
+        <img src="{{book.url}}" class="card-img" />
       </div>
       <div class="col-12 col-md-8 col-lg-10 d-flex flex-column p-3">
           <div class="d-flex flex-column flex-grow-1">
-              <h5>{{ book['title'] }}</h5>
-              <h5>By {{ book['authors']|join(', ') }}</h5>
-              <p>Category: {{ book['category'] }}, {{ book['genres']|join(', ') }}</p>
-              <p>Pages: {{ book['pages'] }}</p>
-              <p>{{ book['description'][0] }}</p>
-              <p>{{ book['description'][book['description']|length - 1] }}</p>
+              <h5>{{ book.title }}</h5>
+              <h5>By {{ book.authors|join(', ') }}</h5>
+              <p>Category: {{ book.category }}, {{ book.genres|join(', ') }}</p>
+              <p>Pages: {{ book.pages }}</p>
+              <p>{{ book.description[0] }}</p>
+              <p>{{ book.description[book.description|length - 1] }}</p>
           </div>
           <div class="mt-1 me-3 text-end">
-              <a href="/books/{{book['title']}}" class="btn btn-success">More details</a>
+              <a href="/books/{{book.title}}" class="btn btn-success">More details</a>
           </div>
       
       
