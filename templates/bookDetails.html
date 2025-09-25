@@ -11,10 +11,10 @@
         <div class="col-12 col-md-8 col-lg-10 d-flex flex-column p-3">
         <div class="d-flex flex-column flex-grow-1">
             <h5 class="card-title">{{book.title}}</h5>
-            <h5>By {{ book['authors']|join(', ') }}</h5>
-            <div>Category: {{ book['category'] }}, {{ book['genres']|join(', ') }}</div>
-            <div>Pages: {{ book['pages'] }}</div>
-            <p>Copies: <strong>{{ book['copies'] }}</strong> Available: <strong>{{ book['available'] }}</strong></p>
+            <h5>By {{ book.authors|join(', ') }}</h5>
+            <div>Category: {{ book.category }}, {{ book.genres|join(',' ) }}</div>
+            <div>Pages: {{ book.pages }}</div>
+            <p>Copies: <strong>{{ book.copies }}</strong> Available: <strong>{{ book.available }}</strong></p>
             {% for desc in book.description%}
             <p class="card-text">{{desc}}</p>
             {% endfor %}
