@@ -1,0 +1,68 @@
+{% from "_render_field.html" import render_field %}
+{% extends "base.html" %}
+{% block mainblock %}
+
+<div class="col-xs-4 col-md-12 col-lg-12 p-2">
+  <div class="card card-common h-100">
+        <div class="col-12 col-md-8 col-lg-10 d-flex flex-column p-3">
+            <form method="POST" action="{{ url_for('books.addBook') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+            {{ form.genres.label }}
+            {{ form.genres(class="form-select", multiple=True) }}
+            </div>
+
+            <div class="mb-3">
+            {{ form.title.label }}
+            {{ form.title(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+            {{ form.category.label }}
+            {{ form.category(class="form-select") }}
+            </div>
+
+            <div class="mb-3">
+            {{ form.pages.label }}
+            {{ form.pages(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+            {{ form.copies.label }}
+            {{ form.copies(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+            <label>Authors</label>
+            <div id="authors-list">
+                {% for author_form in form.authors %}
+                <div class="d-flex mb-2">
+                    {{ author_form.form.name(class="form-control me-2", placeholder="Author") }}
+                    <div class="form-check ms-2">
+                    {{ author_form.form.illustrator(class="form-check-input") }}
+                    <label class="form-check-label">Illustrator</label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" name="add_author" value="1" class="btn btn-secondary">+ Add Author</button>
+            </div>
+
+            <div class="mb-3">
+            {{ form.url.label }}
+            {{ form.url(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+            {{ form.description.label }}
+            {{ form.description(class="form-control", rows="5") }}
+            </div>
+
+
+            <button type="submit" class="btn btn-success">Save Book</button>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

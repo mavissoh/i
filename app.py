@@ -25,12 +25,8 @@ from models.users import User
 
 import pymongo
 
-
-
 app.register_blueprint(booksBlueprint)
 app.register_blueprint(auth)
-
-
 
 @app.route('/test')
 def testing():
