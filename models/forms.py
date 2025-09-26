@@ -16,13 +16,13 @@ class AuthorForm(FlaskForm):
     illustrator = BooleanField("Illustrator")
 
 class BookForm(FlaskForm):
-    genres = SelectMultipleField("Genres", validators=[InputRequired()])
-    title = StringField("Title", validators=[InputRequired()])
-    category = SelectField("Category", choices=[("Children","Children"),("Teens","Teens"),("Adult","Adult")])
-    pages = IntegerField("Pages", validators=[InputRequired()])
-    copies = IntegerField("Copies", validators=[InputRequired()])
-    url = StringField("Url", validators=[InputRequired()])
-    description = TextAreaField("Description", validators=[InputRequired()])
+    genres = SelectMultipleField("Choose multiple Genres:", validators=[InputRequired()])
+    title = StringField("Title:", validators=[InputRequired()])
+    category = SelectField("Choose a category:", choices=[("Children","Children"),("Teens","Teens"),("Adult","Adult")])
+    pages = IntegerField("Number of Pages:", validators=[InputRequired()])
+    copies = IntegerField("Number of Copies:", validators=[InputRequired()])
+    url = StringField("URL for Cover:", validators=[InputRequired()])
+    description = TextAreaField("Description:", validators=[InputRequired()])
     
     # Unlimited authors
     authors = FieldList(FormField(AuthorForm), min_entries=1)
