@@ -33,8 +33,12 @@
               <p>{{ book.description[0] }}</p>
               <p>{{ book.description[book.description|length - 1] }}</p>
           </div>
-          <div class="mt-1 me-3 text-end">
-              <a href="/books/{{book.title}}" class="btn btn-success">More details</a>
+
+          <div class="mt-1 me-1 text-end">
+            {% if book.available >= 1 %}
+            <a href="#" class="btn btn-success">Make a Loan</a>
+            {% endif %}
+            <a href="/books/{{book.title}}" class="btn btn-success">More details</a>
           </div>
       
       

@@ -20,8 +20,13 @@
             {% endfor %}
 
         </div>
-        <div class="mt-3 me-3 text-end">
-            <a href="/books" class="btn btn-success">Back to Book Titles</a>
+        <div class="mt-3 me-1 text-end">
+          <a href="/books" class="btn btn-success">Back to Book Titles</a>
+          {% if book.available >= 1 %}
+          <a href="/books/{{book.title}}" class="btn btn-success">Make a Loan</a>
+            {% else %}
+              <a class="btn btn-danger">Not Available</a>
+          {% endif %}
         </div>  
         </div>
     </div>

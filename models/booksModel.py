@@ -37,3 +37,22 @@ class Book(db.Document):
     def getBook(bookName):
         return Book.objects(title = bookName).first()
     
+    @staticmethod
+    def borrowBook(bookName):
+        book = Book.objects(title = bookName).first()
+        if book:
+            if book.available >= 1:
+                book.available -= 1
+                return book.save()
+        return "Loan unsuccessful"
+    
+    @staticmethod
+    def returnBook(bookName):
+        book = Book.objects(title = bookName).first()
+        if book:
+            if book.available < book.copies:
+                book.available += 1
+                return book.save()
+        return "Return unsuccessful"
+            
+    
