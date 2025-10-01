@@ -26,3 +26,4 @@ class BookForm(FlaskForm):
     
     # Unlimited authors
     authors = FieldList(FormField(AuthorForm), min_entries=1)
+

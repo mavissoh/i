@@ -1,0 +1,91 @@
+{% from "_render_field.html" import render_field %}
+{% extends "base.html" %}
+{% block mainblock %}
+
+
+{% if loans %}
+<div class="card p-0 shadow-sm ms-3 me-3">
+  <!-- Header row -->
+  <div class="px-3 py-2 bg-light border-bottom">
+    <div class="row g-0 align-items-center fw-bold text-muted">
+      <div class="col-4">Title/Author</div>
+      <div class="col-2 text-center">Due Date</div>
+      <div class="col-2 text-center">Return date</div>
+      <div class="col-2 text-center">Renew Count</div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+
+  <!-- Data rows -->
+  {% for loan in loans %}
+  <div class="px-3 py-3 border-bottom">
+    <div class="row g-0 align-items-center">
+
+      <!-- Title / Author (with cover) -->
+      <div class="col-4 d-flex align-items-start">
+        <div class="me-3" style="width:48px;height:64px;overflow:hidden;border-radius:.25rem;">
+          {% if loan.book and loan.book.url %}
+            <img src="{{ loan.book.url }}" class="img-fluid" alt="{{ loan.book.title }}">
+          {% else %}
+            <div class="bg-light text-muted d-flex align-items-center justify-content-center" style="width:48px;height:64px;">—</div>
+          {% endif %}
+        </div>
+        
+      </div>
+      
+
+      <!-- Dates -->
+      <div class="col-2 text-center">
+        {{ loan.borrowDate.strftime('%d %b %Y') }}
+      </div>
+
+      <div class="col-2 text-center">
+        {% if loan.returnDate %}
+          {{ loan.returnDate.strftime('%d %b %Y') }}
+        {% else %}
+          —
+        {% endif %}
+      </div>
+
+      <div class="col-2 text-center">
+        {{ loan.renewCount}}
+      </div>
+
+      <!-- Actions -->
+      <div class="col-2">
+        <div class="d-flex justify-content-start gap-2">
+
+          {% if not loan.returnDate %}
+            <form method="post" action="{{ url_for('loans.returnLoan', title=loan.book.title) }}" class="d-inline">
+              <button class="btn btn-sm btn-success">Return</button>
+            </form>
+          {% if loan.renewCount < 2 %}
+            <form method="post" action="{{ url_for('loans.renewLoan', title=loan.book.title) }}" class="d-inline">
+              <button class="btn btn-sm btn-success">Renew</button>
+            </form>
+          {% endif %}
+          {% else %}
+            <form method="post" action="{{ url_for('loans.deleteLoan', title=loan.book.title) }}" class="d-inline">
+              <button class="btn btn-sm btn-danger">Delete</button>
+            </form>
+          {% endif %}
+
+        </div>
+      </div>
+      <div>
+        <div class="col-4">{{ loan.book.title }}</div>
+        {% if loan.book.authors %}
+        <div class="pt-2">By {{ loan.book.authors|join(', ') }}</div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% else %}
+  <p>You have no loans.</p>
+{% endif %}
+
+{% endblock %}

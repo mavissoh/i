@@ -19,6 +19,7 @@ login_manager.login_message = "Please login or register first to get an account.
 
 from controllers.booksController import booksBlueprint
 from controllers.auth import auth
+from controllers.loanController import loansBlueprint
 
 from models.booksModel import Book
 from models.users import User
@@ -27,7 +28,4 @@ import pymongo
 
 app.register_blueprint(booksBlueprint)
 app.register_blueprint(auth)
-
-@app.route('/test')
-def testing():
-    return render_template('testing.html')
+app.register_blueprint(loansBlueprint)

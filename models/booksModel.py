@@ -1,4 +1,6 @@
 from models.books import all_books
+# from models.loan import Loan
+
 from app import db
 
 class Book(db.Document):
@@ -37,22 +39,12 @@ class Book(db.Document):
     def getBook(bookName):
         return Book.objects(title = bookName).first()
     
-    @staticmethod
-    def borrowBook(bookName):
-        book = Book.objects(title = bookName).first()
-        if book:
-            if book.available >= 1:
-                book.available -= 1
-                return book.save()
-        return "Loan unsuccessful"
+    # @staticmethod
+    # def borrowBook(self, user):
+    #     return Loan.createLoan(member=user, book=self)
     
-    @staticmethod
-    def returnBook(bookName):
-        book = Book.objects(title = bookName).first()
-        if book:
-            if book.available < book.copies:
-                book.available += 1
-                return book.save()
-        return "Return unsuccessful"
+    # @staticmethod
+    # def returnBook(self, user):
+    #     return Loan.updateLoan(member=user, book=self)
             
     
