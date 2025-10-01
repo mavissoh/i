@@ -28,6 +28,7 @@
         <img src="{{ url_for('static', filename='img/pfp.jpeg')}}" width="50" class="rounded-circle me-3">
         <div class="text-white">{{ current_user.name }}</div>
       </div>
+      
     {% endif %}
   {%- endmacro %}
 
@@ -35,12 +36,6 @@
     <li class="nav-item">
       <a href="{{ url_for('books.home') }}" class="nav-link text-white p-3 mb-2 sidebar-link">
         <i class="fas fa-address-card text-light fa-lg me-3"></i> Book Titles
-      </a>
-    </li>
-
-    <li class="nav-item">
-      <a href="{{ url_for('loans.showLoans') }}" class="nav-link text-white p-3 mb-2 sidebar-link">
-        <i class="fas fa-clipboard text-light fa-lg me-3"></i> Loans
       </a>
     </li>
 
@@ -53,6 +48,14 @@
       <li class="nav-item">
         <a href="{{ url_for('auth.register') }}" class="nav-link text-white p-3 mb-2 sidebar-link">
           <i class="fas fa-user text-light fa-lg me-3"></i> Register
+        </a>
+      </li>
+    {% endif %}
+
+    {% if current_user.is_authenticated and current_user.email != "admin@lib.sg" %}
+      <li class="nav-item">
+        <a href="{{ url_for('loans.showLoans') }}" class="nav-link text-white p-3 mb-2 sidebar-link">
+          <i class="fas fa-clipboard text-light fa-lg me-3"></i> Loans
         </a>
       </li>
     {% endif %}
