@@ -20,7 +20,7 @@ def register():
                 User.createUser(email=form.email.data,password=hashpass, name=form.name.data)
                 return redirect(url_for('auth.login'))
             else:
-                form.email.errors.append("User already existed")
+                form.email.errors.append("User already exists")
                 render_template('register.html', form=form, panel="Register")
     return render_template('register.html', form=form, panel="Register")
 

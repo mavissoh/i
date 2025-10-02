@@ -2,94 +2,99 @@
 {% extends "base.html" %}
 {% block mainblock %}
 
-<div class="col-xs-4 col-md-12 col-lg-12 p-2">
-  <div class="card card-common h-100">
-        <div class="col-12 col-md-12 col-lg-12 d-flex flex-column p-5">
-            <form method="POST" action="{{ url_for('books.addBook') }}">
-            {{ form.hidden_tag() }}
+{% if current_user.email != "admin@lib.sg" %}
+    <div>You are not allowed to access this page.</div>
 
-            <!-- Genres -->
-            <div class="row mb-3 align-items-start justify-content-between">
-                {{ form.genres.label(class="col-md-2 fw-bold") }}
-                <div class="col-md-9">
-                {{ form.genres(class="form-select", multiple=True) }}
-                </div>
-            </div>
+{% else %}
+    <div class="col-xs-4 col-md-12 col-lg-12 p-2">
+    <div class="card card-common h-100">
+            <div class="col-12 col-md-12 col-lg-12 d-flex flex-column p-5">
+                <form method="POST" action="{{ url_for('books.addBook') }}">
+                {{ form.hidden_tag() }}
 
-            <!-- Title -->
-            <div class="row mb-3 align-items-start justify-content-between">
-                {{ form.title.label(class="col-md-2 fw-bold") }}
-                <div class="col-md-9">
-                {{ form.title(class="form-control") }}
-                </div>
-            </div>
-
-            <!-- Category -->
-            <div class="row mb-3 align-items-start justify-content-between">
-                {{ form.category.label(class="col-md-2 fw-bold") }}
-                <div class="col-md-9">
-                {{ form.category(class="form-select") }}
-                </div>
-            </div>
-
-            <!-- Pages -->
-            <div class="row mb-3 align-items-start justify-content-between">
-                {{ form.pages.label(class="col-md-2 fw-bold") }}
-                <div class="col-md-9">
-                {{ form.pages(class="form-control") }}
-                </div>
-            </div>
-
-            <!-- Copies -->
-            <div class="row mb-3 align-items-start justify-content-between">
-                {{ form.copies.label(class="col-md-2 fw-bold") }}
-                <div class="col-md-9">
-                {{ form.copies(class="form-control") }}
-                </div>
-            </div>
-
-            <!-- Authors -->
-            <div class="row mb-3 align-items-start justify-content-between">
-                <label class="col-md-2 fw-bold">Authors:</label>
-                <div class="col-md-9">
-                <div id="authors-list">
-                    {% for author_form in form.authors %}
-                    <div class="d-flex mb-2">
-                        {{ author_form.form.name(class="form-control me-2", placeholder="Author") }}
-                        <div class="form-check ms-2 d-flex align-items-start">
-                        {{ author_form.form.illustrator(class="form-check-input me-2") }}
-                        <label class="form-check-label">Illustrator</label>
-                        </div>
+                <!-- Genres -->
+                <div class="row mb-3 align-items-start justify-content-between">
+                    {{ form.genres.label(class="col-md-2 fw-bold") }}
+                    <div class="col-md-9">
+                    {{ form.genres(class="form-select", multiple=True) }}
                     </div>
-                    {% endfor %}
                 </div>
-                <button type="submit" name="add_author" value="1" class="btn btn-secondary btn-sm">+ Add Author</button>
+
+                <!-- Title -->
+                <div class="row mb-3 align-items-start justify-content-between">
+                    {{ form.title.label(class="col-md-2 fw-bold") }}
+                    <div class="col-md-9">
+                    {{ form.title(class="form-control") }}
+                    </div>
                 </div>
-            </div>
 
-            <!-- URL -->
-            <div class="row mb-3 align-items-start justify-content-between">
-                {{ form.url.label(class="col-md-2 fw-bold") }}
-                <div class="col-md-9">
-                {{ form.url(class="form-control") }}
+                <!-- Category -->
+                <div class="row mb-3 align-items-start justify-content-between">
+                    {{ form.category.label(class="col-md-2 fw-bold") }}
+                    <div class="col-md-9">
+                    {{ form.category(class="form-select") }}
+                    </div>
                 </div>
-            </div>
 
-            <!-- Description -->
-            <div class="row mb-3 align-items-start justify-content-between">
-                {{ form.description.label(class="col-md-2 fw-bold") }}
-                <div class="col-md-9">
-                {{ form.description(class="form-control", rows="5") }}
+                <!-- Pages -->
+                <div class="row mb-3 align-items-start justify-content-between">
+                    {{ form.pages.label(class="col-md-2 fw-bold") }}
+                    <div class="col-md-9">
+                    {{ form.pages(class="form-control") }}
+                    </div>
                 </div>
-            </div>
 
-            <div class="row justify-content-end">
-                <div class="col-md-1 me-4 ">
-                <button type="submit" class="btn btn-success">Submit</button></div>
-            </div>
-            </form>
+                <!-- Copies -->
+                <div class="row mb-3 align-items-start justify-content-between">
+                    {{ form.copies.label(class="col-md-2 fw-bold") }}
+                    <div class="col-md-9">
+                    {{ form.copies(class="form-control") }}
+                    </div>
+                </div>
 
+                <!-- Authors -->
+                <div class="row mb-3 align-items-start justify-content-between">
+                    <label class="col-md-2 fw-bold">Authors:</label>
+                    <div class="col-md-9">
+                    <div id="authors-list">
+                        {% for author_form in form.authors %}
+                        <div class="d-flex mb-2">
+                            {{ author_form.form.name(class="form-control me-2", placeholder="Author") }}
+                            <div class="form-check ms-2 d-flex align-items-start">
+                            {{ author_form.form.illustrator(class="form-check-input me-2") }}
+                            <label class="form-check-label">Illustrator</label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" name="add_author" value="1" class="btn btn-secondary btn-sm">+ Add Author</button>
+                    </div>
+                </div>
+
+                <!-- URL -->
+                <div class="row mb-3 align-items-start justify-content-between">
+                    {{ form.url.label(class="col-md-2 fw-bold") }}
+                    <div class="col-md-9">
+                    {{ form.url(class="form-control") }}
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="row mb-3 align-items-start justify-content-between">
+                    {{ form.description.label(class="col-md-2 fw-bold") }}
+                    <div class="col-md-9">
+                    {{ form.description(class="form-control", rows="5") }}
+                    </div>
+                </div>
+
+                <div class="row justify-content-end">
+                    <div class="col-md-1 me-4 ">
+                    <button type="submit" class="btn btn-success">Submit</button></div>
+                </div>
+                </form>
+
+            </div>
         </div>
     </div>
-</div>
+{% endif %}
 {% endblock %}

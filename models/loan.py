@@ -34,7 +34,7 @@ class Loan(db.Document):
 
         # no duplicate active loan of same book
         if Loan.objects(member=member, book=book, returnDate=None).first():
-            return "You already has an active loan for this book."
+            return "You already have an active loan for this book."
 
         # checks availability
         if book.available <= 0:

@@ -6,7 +6,7 @@ from models.loan import Loan
 loansBlueprint = Blueprint("loans", __name__)
 
 def goBack():
-    # go back to the page that posted the form; fall back to Book Titles
+    # go back to the page that posted the form
     return redirect(request.referrer)
 
 @loansBlueprint.post('/loans/add/<title>')
