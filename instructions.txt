@@ -4,9 +4,6 @@ changed specifically to align with the Flask version downgrade because I was try
 alongside fixing the Flask codes, so there might be some changes undocumented. Both versions are still using 
 Bootstrap 5 though (different from Staycation’s Bootstrap 4). You may identify the changes better in my GitHub 
 commits (hopefully).
-ANOTHER NOTE: please download requirements2.txt for Q2a and requirements.txt for Q2b onwards because of the above 
-changes. Apologies as I wasn’t sure if the requirements.txt would work for Q2a due to the Flask downgrade. 
-Hope this makes sense?
 
 you can start the application with
 flask --debug run
